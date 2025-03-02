@@ -54,7 +54,7 @@ class QuadraticEquation extends Equation {
         return [this.EqSolution, this.EqSolution2]
     }
     
-    CompareSolutions() { // porovnáme vstup (řešení) zadané uživatelem se správným řešením kvadratické rovnice
+    CompareSolutions() { // porovnáme řešení zadané uživatelem se správným řešením kvadratické rovnice
         this.Solution = this.SolveEquation();
         if (document.getElementById('RoundingCheckbox').checked) { // pokud je zaškrtnutý checkbox, výsledek bude zaoukrouhlen na dvě desetinná místa
             this.Solution[0] = super.RoundToDecimals(this.Solution[0], 2);
