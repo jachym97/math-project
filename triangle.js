@@ -25,12 +25,12 @@ class CanvasDrawer {
         this.CalculateAreaOfTriangle();
     }
 
-    DrawBackground() {
+    DrawBackground() { // vykreslení pozadí kartézské soustavy souřadnic
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.ctx.strokeRect(0, 0, this.width, this.height);
     }
 
-    DrawAxes() {
+    DrawAxes() { // vykreslení os x a y
         this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = 2;
 
@@ -42,7 +42,7 @@ class CanvasDrawer {
         this.ctx.stroke();
     }
 
-    DrawText() {
+    DrawText() { // vykreslení popisu soustavy - os a počátku
         this.ctx.font = '18px Arial';
         this.ctx.fillStyle = 'black';
         this.ctx.textAlign = 'center';
@@ -53,12 +53,12 @@ class CanvasDrawer {
         this.ctx.fillText('x', this.width - 29, this.height / 2 - 10);
     }
 
-    GetRandomNumber(number) {
+    GetRandomNumber(number) { // vrátí náhodné celé číslo (maximálně [number]) 
         this.RandomNum = Math.floor(Math.random() * number) + 1;
         return this.RandomNum;
     }
 
-    DrawTriangle() {
+    DrawTriangle() { // vykreslení pravoúhlého trojúhelníku
         this.ctx.strokeStyle = 'red';
         this.ctx.lineWidth = 3;
     
@@ -73,7 +73,7 @@ class CanvasDrawer {
           (this.CoordinateC === this.height / 2)
     } 
     while
-        (this.CoordinateA >= this.CoordinateB);
+        (this.CoordinateA >= this.CoordinateB); // aby součet délek dvou stran trojúhelníku byl větší než délka strany třetí
 
 
         this.ctx.beginPath();
@@ -86,17 +86,17 @@ class CanvasDrawer {
         this.ctx.stroke();
     }
 
-    CalculateAreaOfTriangle() {
+    CalculateAreaOfTriangle() { // vrátí číselnou hodnotu - plochu trojúhelníku
         let Area;
         Area = (this.CoordinateB - this.CoordinateA)*this.CoordinateC/(((this.width - 40)/(this.MaxValueOfCoordinate*2))**2*2);
         return Area;
     }
 
-    ShowValueOfCalculatedArea(Area) {
+    ShowValueOfCalculatedArea(Area) { // zobrazí číselnou hodnotu - plochu trojúhelníku
         document.getElementById("AreaOfTriangle").innerText = "Plocha: " + Area + " cm²";
     }
 
-    WriteNumbersOnAxes() {
+    WriteNumbersOnAxes() { // vykreslení popisu os x a y (-5, -4,..., 0,..., 4, 5)
         let i;
      //   this.MaxValueOfCoordinate = 5;
         
