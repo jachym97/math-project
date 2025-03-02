@@ -10,17 +10,17 @@ class Equation {
         this.RoundToDecimals();
     }
 
-    GetCoefficient(min, max) {
+    GetCoefficient(min, max) { // vrací náhodné celočíselné hodnoty koeficientů v rozmezí hodnot min a max
       this.Coefficient = Math.floor(Math.random() * (max - min + 1)) + min;
       return this.Coefficient;
     }
 
-    GetRandomSign() {
+    GetRandomSign() { // vrací znaménko + nebo - 
       this.RandomSign = Math.random() < 0.5 ? '+' : '-';
       return this.RandomSign;
     } 
 
-    RoundToDecimals(num, decimals) {
+    RoundToDecimals(num, decimals) { // zaokrouhlí výsledek na [decimals] desetinných míst
         const factor = Math.pow(10, decimals);
         return Math.round(num * factor) / factor;
     }
