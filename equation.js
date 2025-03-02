@@ -20,7 +20,7 @@ class Equation {
       return this.RandomSign;
     } 
 
-    RoundToDecimals(num, decimals) { // zaokrouhlí výsledek na [decimals] desetinných míst
+    RoundToDecimals(num, decimals) { // zaokrouhlí [num] na [decimals] desetinných míst
         const factor = Math.pow(10, decimals);
         return Math.round(num * factor) / factor;
     }
