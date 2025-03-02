@@ -53,7 +53,7 @@ class CanvasDrawer {
         this.ctx.fillText('x', this.width - 29, this.height / 2 - 10);
     }
 
-    GetRandomNumber(number) { // vrátí náhodné celé číslo (maximálně [number]) 
+    GetRandomNumber(number) { // vrátí náhodné celé číslo od 1 do [number] 
         this.RandomNum = Math.floor(Math.random() * number) + 1;
         return this.RandomNum;
     }
