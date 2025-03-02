@@ -13,21 +13,21 @@ class SystemOfLinearEquation extends LinearEquation {
         this.Solution2 = Solution2;
         this.Solutions = Solutions;
     }
-    GenerateSystemOfEquations() {
+    GenerateSystemOfEquations() { // vygeneruje soustavu rovnic
         do {
         const space = ' ';
-        let RandSign = this.equation1.GetRandomSign();
+        let RandSign = this.equation1.GetRandomSign(); // vygenerování znaménka + nebo - 
         let RandSign2 = this.equation2.GetRandomSign();
-        this.B1 = this.equation1.GetCoefficient(1, 10);
+        this.B1 = this.equation1.GetCoefficient(1, 10); // vygenerování koeficientů 
         this.B2 = this.equation2.GetCoefficient(1, 10);
-        this.equation1.GenerateEquation();
+        this.equation1.GenerateEquation(); // vygenerování dvou rovnic
         this.equation2.GenerateEquation();
         this.equation1.Equation += ` ${RandSign}${space}${this.B1}y`;
         this.equation2.Equation += ` ${RandSign2}${space}${this.B2}y`;
         this.A1 = this.equation1.a;
         this.A2 = this.equation2.a;
    // C1 = ;
-   if (this.equation1.Sign === '+' && this.equation1.Sign2 === '+') {
+   if (this.equation1.Sign === '+' && this.equation1.Sign2 === '+') { // dopočítání koeficientů C1 a C2 v závislosti na znaménkách
        this.C1 = this.equation1.b - this.equation1.c;
    }
    else if (this.equation1.Sign === '+' && this.equation1.Sign2 === '-')
@@ -73,21 +73,21 @@ if (RandSign2 === '+') {
        return [this.equation1.Equation, this.equation2.Equation];
     }
 
-SolveSystemOfEquation() {
+SolveSystemOfEquation() { // vrátí řešení soustavy lineárních rovnic
     this.Solution1 = (this.B1*this.C2 - this.B2*this.C1)/(this.A1*this.B2 - this.A2*this.B1);
     this.Solution2 = (this.A2*this.C1 - this.A1*this.C2)/(this.A1*this.B2 - this.A2*this.B1);
     return [this.Solution1, this.Solution2];
 }
 
-CompareSolutions() {
+CompareSolutions() { // porovná hodnotu zadanou uživatelem se správným řešením soustavy rovnic
     this.Solutions = this.SolveSystemOfEquation();
-    if (document.getElementById('RoundingCheckbox').checked) {
+    if (document.getElementById('RoundingCheckbox').checked) { // pokud je zaškrtnutý checkbox, řešení se zaokrouhlí na dvě desetinná místa
         this.Solutions[0] = super.RoundToDecimals(this.Solutions[0], 2);
         this.Solutions[1] = super.RoundToDecimals(this.Solutions[1], 2);
      }
     const inputSolution = parseFloat(document.getElementById("SystemOfSolution").value);
     const inputSolution2 = parseFloat(document.getElementById("SystemOfSolution2").value); 
-    if ((inputSolution === this.Solutions[0] && inputSolution2 === this.Solutions[1]) || 
+    if ((inputSolution === this.Solutions[0] && inputSolution2 === this.Solutions[1]) || // porovnání vstupu a správného řešení
         (inputSolution === this.Solutions[1] && inputSolution2 === this.Solutions[0])) {
         document.getElementById("SystemOfEqMessage").innerText = "Správné řešení!";
     } else {
@@ -95,12 +95,12 @@ CompareSolutions() {
     }
 }
 
-    ShowEquations() {
+    ShowEquations() { // zobrazení soustavy rovnic
         const equations = this.GenerateSystemOfEquations();
         document.getElementById("generatedSysLinEq").innerText = `${equations[0]}; ${equations[1]}`;
     }
 
-    ShowSolution() {
+    ShowSolution() { // zobrazení řešení soustavy
         document.getElementById("SystemOfEqSolution1").innerText = `Řešení 1: ${this.Solutions[0]}`;
         document.getElementById("SystemOfEqSolution2").innerText = `Řešení 2: ${this.Solutions[1]}`;
     }
