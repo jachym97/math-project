@@ -6,7 +6,7 @@ class MathTestGenerator {
         this.solutions = [];
     }
 
-    GenerateMathTest() {
+    GenerateMathTest() { // Vygeneruje rovnice i s výsledky
         let EquationType;
         for (let i = 0; i < this.amountOfMathProblems; i++) {
                 EquationType = new LinearEquation();
@@ -17,7 +17,7 @@ class MathTestGenerator {
         return [this.equations, this.solutions];
     }
 
-    generatePDF() {
+    generatePDF() { // vygeneruje PDF, nastaví velikost a typ fontu, vepíše rovnici do souboru
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
@@ -32,13 +32,13 @@ class MathTestGenerator {
     }
 }
 
-function getSelectedValue() {
+function getSelectedValue() { // vrátí číselnou hodnotu vybranou uživatelem z komponenty select - počet příkladů do PDF 
     const selectElement = document.getElementById("AmountSelect");
     const selectedText = selectElement.options[selectElement.selectedIndex].text; 
     return parseInt(selectedText, 10);
   }
 
-document.getElementById("generateLinearPDFButton").addEventListener("click", function() {
+document.getElementById("generateLinearPDFButton").addEventListener("click", function() { // funkčnost tlačítka k vygenerování PDF souboru
     const mathTest = new MathTestGenerator(getSelectedValue(), 'Lineární rovnice');
     mathTest.GenerateMathTest();
     mathTest.generatePDF();
