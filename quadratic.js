@@ -13,27 +13,27 @@ class QuadraticEquation extends Equation {
         this.Solution = Solution;
     }
 
-    GenerateEquation() {
+    GenerateEquation() { // vygeneruje kvadratickou rovnici
         const variableX = 'x';
         const variableXSquared = 'x²';
         const space = ' ';
         const equalsSign = '=';
         const zero = '0';
-        this.Sign  = super.GetRandomSign();
+        this.Sign  = super.GetRandomSign(); // vygeneruje znaménko + nebo - 
         this.Sign2 = super.GetRandomSign();
 
         do {
-            this.a = super.GetCoefficient(1,10);
+            this.a = super.GetCoefficient(1,10); // vygenerování koeficientů a, b, c
             this.b = super.GetCoefficient(1,10);
             this.c = super.GetCoefficient(1,10);
             }
-        while ((Math.pow(this.b, 2) - 4*this.a*this.c) < 0)
+        while ((Math.pow(this.b, 2) - 4*this.a*this.c) < 0) // chceme pouze reálná řešení, tedy diskriminant >= 0 
 
         this.Equation = `${this.a}${variableXSquared}${space}${this.Sign}${space}${this.b}${variableX}${space}${this.Sign2}${space}${this.c}${space}${equalsSign}${space}${zero}`;
         return this.Equation;
     }
 
-    SolveEquation() {
+    SolveEquation() { // vrátí řešení kvadratické rovnice v závislosti na vygenerovaných znaménkách Sign a Sign2
         if (this.Sign === '+' && this.Sign2 === '+') {
             this.EqSolution = ((-this.b + Math.sqrt(Math.pow(this.b, 2) - 4*this.a*this.c)) / (2*this.a));
             this.EqSolution2 = ((-this.b - Math.sqrt(Math.pow(this.b, 2) - 4*this.a*this.c)) / (2*this.a));
@@ -54,27 +54,27 @@ class QuadraticEquation extends Equation {
         return [this.EqSolution, this.EqSolution2]
     }
     
-    CompareSolutions() {
+    CompareSolutions() { // porovnáme vstup (řešení) zadané uživatelem se správným řešením kvadratické rovnice
         this.Solution = this.SolveEquation();
-        if (document.getElementById('RoundingCheckbox').checked) {
+        if (document.getElementById('RoundingCheckbox').checked) { // pokud je zaškrtnutý checkbox, výsledek bude zaoukrouhlen na dvě desetinná místa
             this.Solution[0] = super.RoundToDecimals(this.Solution[0], 2);
             this.Solution[1] = super.RoundToDecimals(this.Solution[1], 2);
          }
         const inputSolution = parseFloat(document.getElementById("QSolution").value);
         const inputSolution2 = parseFloat(document.getElementById("QSolution2").value); 
-        if ((inputSolution === this.Solution[0] && inputSolution2 ===  this.Solution[1]) || 
+        if ((inputSolution === this.Solution[0] && inputSolution2 ===  this.Solution[1]) || // pokud se oba vstupy shodují se správným výsledkem rovnice
             (inputSolution === this.Solution[1] && inputSolution2 === this.Solution[0])) {
-            document.getElementById("QEqMessage").innerText = "Správné řešení!";
+            document.getElementById("QEqMessage").innerText = "Správné řešení!"; // vypíše se hláška "Správné řešení!"
         } else {
             document.getElementById("QEqMessage").innerText = "Nesprávné řešení!";
         }
     }
 
-    ShowEquation() {
+    ShowEquation() { // zobrazí vygenerovanou kvadratickou rovnici
         document.getElementById("QgeneratedEq").innerText = this.GenerateEquation();
     }
 
-    ShowSolution() {
+    ShowSolution() { // zobrazí řešení kvadratické rovnice
         document.getElementById("QEqSolution1").innerText = `Řešení 1: ${this.Solution[0]}`;
         document.getElementById("QEqSolution2").innerText = `Řešení 2: ${this.Solution[1]}`;
     }
