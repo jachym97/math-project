@@ -1,1 +1,2 @@
 This project is a JavaScript application that generates various types of mathematical equations, including linear, quadratic, and systems of linear equations. It allows users to generate random equations, solve them, and compare the solutions. Additionally, the application provides a visual representation of a triangle drawn on an HTML canvas, illustrating the relationship between the coordinates and the computed area. Users can also export the generated equations as a PDF file.
+URL: https://jachym97.github.io/math-project/math.html
